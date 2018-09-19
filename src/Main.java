@@ -24,36 +24,33 @@ public class Main {
     private static String stack = "";
     private static StringBuilder tokens = new StringBuilder();
 
-    private static void doAllWork(String input) throws Exception {
+    private static void doAllWork(String input) {
+        String tmp;
         for (Character c : input.toCharArray()) {
-            try {
-                // Token ended with space or \n or tab -> get token from @stack
-                if (Character.isSpaceChar(c))
-                    flushStack();
+            // Token ended with space or \n or tab -> get token from @stack
+            if (Character.isWhitespace(c))
+                flushStack();
                 // token probably continues, so try to add new char and find relevant pattern
-                else {
-                    parse(stack + c);
-                    stack += c;
-                }
-            } catch (Exception e) {
+            else {
+                tmp = parse(stack + c);
                 // No such pattern, so undo and try parse from previous token
-                if(stack != null && stack.length() > 0)
+                if (tmp == null) {
                     flushStack();
-                if(!Character.isSpaceChar(c))
+                    assert stack.length() == 0;
                     stack = c + "";
+                }
+                // Still token continues, append symbol and go to next iteration
+                else
+                    stack += c;
+
             }
-//            if (!Character.isSpaceChar(c)) {
-//                stack += c;
-//            } else {
-//                flushStack();
-//            }
         }
-        if(stack != null && stack.length() > 0)
+        if (stack != null && stack.length() > 0)
             flushStack();
     }
 
 
-    private static void flushStack() throws Exception {
+    private static void flushStack() {
         if (stack != null && stack.length() > 0) {
             String tmp = parse(stack);
             tokens.append(tmp + " " + stack);
@@ -62,14 +59,15 @@ public class Main {
         }
     }
 
-    private static String parse(String input) throws Exception {
+    private static String parse(String input) {
         for (Container c : PATTERNS) {
             if (c.isIn(input)) {
                 return c.getToken();
             }
         }
+        return null;
 //        System.out.println("stack: " + stack);
-        throw new Exception("No such token");
+//        throw new Exception("No such token");
     }
 
     private static Container[] PATTERNS = {
