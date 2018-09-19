@@ -10,14 +10,16 @@ public class Main {
                 "    }\n" +
                 "}";
 
-//        String input = ");";
-
         try {
             doAllWork(input);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Stack: " + stack);
         }
+
+        //TODO: тесты
+        //TODO: чтение инпута из файла, запись в файл. Результат парсинга хранится в @tokens переменной. Удачи ;)
+
 
     }
 
@@ -66,8 +68,6 @@ public class Main {
             }
         }
         return null;
-//        System.out.println("stack: " + stack);
-//        throw new Exception("No such token");
     }
 
     private static Container[] PATTERNS = {
