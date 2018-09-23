@@ -158,9 +158,7 @@ public class Main {
                         if (substring.contains("h") || substring.contains("x") || substring.contains("f") || substring.contains("."))
                             continue;
 
-                        if (tmp == null)
-                            continue;
-                        else {
+                        if (tmp != null) {
                             //If the syntax token is found try to split the stack and parse numeric value
                             numtmp = parseNumeric(stack.substring(0, i));
                             if (numtmp != null) {
