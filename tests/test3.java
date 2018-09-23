@@ -3,6 +3,7 @@ package divideconquer;
 /**
  * For a set of points in a coordinates system (10000 maximum),
  * ClosestPair class calculates the two closest points.
+ *
  * @author: anonymous
  * @author: Marisa Afuera
  */
@@ -10,17 +11,29 @@ package divideconquer;
 public final class ClosestPair {
 
 
-    /** Number of points */
+    /**
+     * Number of points
+     */
     int numberPoints = 0;
-    /** Input data, maximum 10000. */
+    /**
+     * Input data, maximum 10000.
+     */
     private Location[] array;
-    /** Minimum point coordinate. */
+    /**
+     * Minimum point coordinate.
+     */
     Location point1 = null;
-    /** Minimum point coordinate. */
+    /**
+     * Minimum point coordinate.
+     */
     Location point2 = null;
-    /** Minimum point length. */
+    /**
+     * Minimum point length.
+     */
     private static double minNum = Double.MAX_VALUE;
-    /** secondCount */
+    /**
+     * secondCount
+     */
     private static int secondCount = 0;
 
     /**
@@ -32,7 +45,7 @@ public final class ClosestPair {
     }
 
     /**
-     Location class is an auxiliary type to keep points coordinates.
+     * Location class is an auxiliary type to keep points coordinates.
      */
 
     public static class Location {
@@ -41,8 +54,8 @@ public final class ClosestPair {
         double y = 0;
 
         /**
-         * @param xpar        (IN Parameter)  x coordinate <br/>
-         * @param ypar        (IN Parameter)  y coordinate <br/>
+         * @param xpar (IN Parameter)  x coordinate <br/>
+         * @param ypar (IN Parameter)  y coordinate <br/>
          */
 
         Location(final double xpar, final double ypar) { //Save x, y coordinates
@@ -57,15 +70,17 @@ public final class ClosestPair {
 
     }
 
-    public Location buildLocation(double x, double y){
-        return new Location(x,y);
+    public Location buildLocation(double x, double y) {
+        return new Location(x, y);
     }
 
 
-    /** xPartition function: arrange x-axis.
-     * @param a            (IN Parameter)  array of points <br/>
-     * @param first        (IN Parameter)  first point <br/>
-     * @param last         (IN Parameter)  last point <br/>
+    /**
+     * xPartition function: arrange x-axis.
+     *
+     * @param a     (IN Parameter)  array of points <br/>
+     * @param first (IN Parameter)  first point <br/>
+     * @param last  (IN Parameter)  last point <br/>
      * @return pivot index
      */
 
@@ -91,10 +106,12 @@ public final class ClosestPair {
         return i; // pivot index
     }
 
-    /** yPartition function: arrange y-axis.
-     * @param a            (IN Parameter)  array of points <br/>
-     * @param first        (IN Parameter)  first point <br/>
-     * @param last         (IN Parameter)  last point <br/>
+    /**
+     * yPartition function: arrange y-axis.
+     *
+     * @param a     (IN Parameter)  array of points <br/>
+     * @param first (IN Parameter)  first point <br/>
+     * @param last  (IN Parameter)  last point <br/>
      * @return pivot index
      */
 
@@ -120,10 +137,12 @@ public final class ClosestPair {
         return i; // pivot index
     }
 
-    /** xQuickSort function: //x-axis Quick Sorting.
-     * @param a            (IN Parameter)  array of points <br/>
-     * @param first        (IN Parameter)  first point <br/>
-     * @param last         (IN Parameter)  last point <br/>
+    /**
+     * xQuickSort function: //x-axis Quick Sorting.
+     *
+     * @param a     (IN Parameter)  array of points <br/>
+     * @param first (IN Parameter)  first point <br/>
+     * @param last  (IN Parameter)  last point <br/>
      */
 
     public void xQuickSort(
@@ -136,10 +155,12 @@ public final class ClosestPair {
         }
     }
 
-    /** yQuickSort function: //y-axis Quick Sorting.
-     * @param a            (IN Parameter)  array of points <br/>
-     * @param first        (IN Parameter)  first point <br/>
-     * @param last         (IN Parameter)  last point <br/>
+    /**
+     * yQuickSort function: //y-axis Quick Sorting.
+     *
+     * @param a     (IN Parameter)  array of points <br/>
+     * @param first (IN Parameter)  first point <br/>
+     * @param last  (IN Parameter)  last point <br/>
      */
 
     public void yQuickSort(
@@ -152,9 +173,11 @@ public final class ClosestPair {
         }
     }
 
-    /** closestPair function: find closest pair.
-     * @param a         (IN Parameter) array stored before divide <br/>
-     * @param indexNum  (IN Parameter) number coordinates divideArray <br/>
+    /**
+     * closestPair function: find closest pair.
+     *
+     * @param a        (IN Parameter) array stored before divide <br/>
+     * @param indexNum (IN Parameter) number coordinates divideArray <br/>
      * @return minimum distance <br/>
      */
 
@@ -232,8 +255,7 @@ public final class ClosestPair {
                             point2 = firstWindow[j];
                         }
                     }
-                }
-                else {
+                } else {
                     break;
                 }
             }
@@ -242,9 +264,11 @@ public final class ClosestPair {
         return minValue;
     }
 
-    /** bruteForce function: When the number of coordinates is less than 3.
-     * @param arrayParam   (IN Parameter) array stored before divide <br/>
-     * @return  <br/>
+    /**
+     * bruteForce function: When the number of coordinates is less than 3.
+     *
+     * @param arrayParam (IN Parameter) array stored before divide <br/>
+     * @return <br/>
      */
 
     public double bruteForce(final Location[] arrayParam) {
@@ -300,8 +324,10 @@ public final class ClosestPair {
         return result; // If only one point returns 0.
     }
 
-    /** main function: execute class.
-     * @param args   (IN Parameter) <br/>
+    /**
+     * main function: execute class.
+     *
+     * @param args (IN Parameter) <br/>
      * @throws IOException If an input or output
      *                     exception occurred
      */
@@ -311,26 +337,26 @@ public final class ClosestPair {
         //Input data consists of one x-coordinate and one y-coordinate
 
         ClosestPair cp = new ClosestPair(12);
-        cp.array[0]=cp.buildLocation(2,3);
-        cp.array[1]=cp.buildLocation(2,16);
-        cp.array[2]=cp.buildLocation(3,9);
-        cp.array[3]=cp.buildLocation(6,3);
-        cp.array[4]=cp.buildLocation(7,7);
-        cp.array[5]=cp.buildLocation(19,4);
-        cp.array[6]=cp.buildLocation(10,11);
-        cp.array[7]=cp.buildLocation(15,2);
-        cp.array[8]=cp.buildLocation(15,19);
-        cp.array[9]=cp.buildLocation(16,11);
-        cp.array[10]=cp.buildLocation(17,13);
-        cp.array[11]=cp.buildLocation(9,12);
+        cp.array[0] = cp.buildLocation(2, 3);
+        cp.array[1] = cp.buildLocation(2, 16);
+        cp.array[2] = cp.buildLocation(3, 9);
+        cp.array[3] = cp.buildLocation(6, 3);
+        cp.array[4] = cp.buildLocation(7, 7);
+        cp.array[5] = cp.buildLocation(19, 4);
+        cp.array[6] = cp.buildLocation(10, 11);
+        cp.array[7] = cp.buildLocation(15, 2);
+        cp.array[8] = cp.buildLocation(15, 19);
+        cp.array[9] = cp.buildLocation(16, 11);
+        cp.array[10] = cp.buildLocation(17, 13);
+        cp.array[11] = cp.buildLocation(9, 12);
 
         System.out.println("Input data");
-        System.out.println("Number of points: "+ cp.array.length);
-        for (int i=0;i<cp.array.length;i++){
+        System.out.println("Number of points: " + cp.array.length);
+        for (int i = 0; i < cp.array.length; i++) {
             System.out.println("x: " + cp.array[i].x + ", y: " + cp.array[i].y);
         }
 
-        cp.xQuickSort(cp.array, 0, cp.array.length-1); // Sorting by x value
+        cp.xQuickSort(cp.array, 0, cp.array.length - 1); // Sorting by x value
 
         double result; // minimum distance
 
