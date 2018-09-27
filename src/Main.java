@@ -55,11 +55,7 @@ public class Main {
     static void writeTokensToFile(String outputDir) {
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter(outputDir));
-            String[] tkns = tokens.toString().split("\n");
-            for (String t : tkns) {
-                out.write(t);
-                out.newLine();
-            }
+            out.write(tokens.toString());
             out.close();
         } catch (IOException e) {
             System.out.println("An error was encountered during writing to the file: " + outputDir);

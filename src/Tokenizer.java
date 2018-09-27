@@ -1,15 +1,15 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Tokenizer {
     private String stack;
-    private ArrayList<String> tokens;
+    private LinkedList<String> tokens;
 
 
     public Tokenizer(String input) {
         stack = "";
-        tokens = new ArrayList<>();
+        tokens = new LinkedList<>();
         toTokens(processComments(input));
     }
 
@@ -83,7 +83,7 @@ public class Tokenizer {
                 // token probably continues, so try to add new char and find relevant pattern
             else {
                 //If token is a numeric value
-                if(((stack.length() == 0 && Character.isDigit(c))) || (stack.length()!=0 && Character.isDigit(stack.charAt(0))) ) {
+                if (((stack.length() == 0 && Character.isDigit(c))) || (stack.length() != 0 && Character.isDigit(stack.charAt(0)))) {
                     stack += c;
 
                     //Check all substring of the token for the presence of the syntax token
@@ -143,7 +143,7 @@ public class Tokenizer {
     private void flushStack() {
         if (stack != null && stack.length() > 0) {
             String tmp = parseSyntax(stack);
-            if(tmp == null)
+            if (tmp == null)
                 tmp = parseNumeric(stack);
             tokens.add(tmp + " " + stack + "\n");
             System.out.println(String.format("recognized: %s (%s)", stack, tmp));
